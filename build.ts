@@ -67,9 +67,8 @@ function incrementVersion( version: string ): string {
     }
     return parts.join('.');
 }
-const registry = await fetch('https://registry.npmjs.org/vite-svelte-navigator');
-const raw = await registry.json() as { 'dist-tags': { latest: string } };
-const pkg = Bun.file('./package.json');
-const pack = await pkg.json() as PackageJson;
-pack.version = incrementVersion( raw['dist-tags'].latest );
-await Bun.write( "./package.json", JSON.stringify( pack, null, 2 ) + "\n" );
+const registry = await fetch('https://registry.npmjs.org/vite-svelte-navigator/latest');
+const { version } = await registry.json() as { version: string };
+const pkg = await Bun.file('./package.json').json() as PackageJson;
+pkg.version = incrementVersion( version );
+await Bun.write( "./package.json", JSON.stringify( pkg, null, 2 ) + "\n" );
