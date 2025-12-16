@@ -15,6 +15,10 @@
 
 ## 📦 Installation
 
+### Create app
+[create-vite-svelte-navigator](https://www.npmjs.com/package/create-vite-svelte-navigator)
+
+### Manual
 using `npm`
 ```bash
 npm install vite-svelte-navigator
