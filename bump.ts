@@ -50,11 +50,13 @@ if ( latestVersion !== pkg.version ) {
     pkg.version = latestVersion;
     await Bun.write( "./package.json", JSON.stringify( pkg, null, 2 ) + "\n" );
     console.log( `Updated to version ${latestVersion}` )
-    $`git config user.name "github-actions[bot]"`;
-    $`git config user.email "github-actions[bot]@users.noreply.github.com"`;
-    $`git add package.json`;
-    $`git diff --cached --quiet || git commit -m "update version ${latestVersion}"`;
-    $`git push origin main`;
+    await $`
+      git config user.name "github-actions[bot]"
+      git config user.email "github-actions[bot]@users.noreply.github.com"
+      git add package.json
+      git diff --cached --quiet || git commit -m "update version ${latestVersion}"
+      git push origin main
+    `;
 } else {
     console.log( `Already version ${pkg.version}` )
 }
