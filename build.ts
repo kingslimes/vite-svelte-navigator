@@ -54,7 +54,7 @@ type PackageJson = {
     devDependencies: Record<string,string>,
     peerDependencies: Record<string,string>
 }
-function incrementVersion( version: string ): string {
+function bumpVersion( version: string ): string {
     const parts = version.split('.').map(Number);
     for ( let i = parts.length - 1; i >= 0; i-- ) {
         parts[i]++;
@@ -70,5 +70,5 @@ function incrementVersion( version: string ): string {
 const registry = await fetch('https://registry.npmjs.org/vite-svelte-navigator/latest');
 const { version } = await registry.json() as { version: string };
 const pkg = await Bun.file('./package.json').json() as PackageJson;
-pkg.version = incrementVersion( version );
+pkg.version = bumpVersion( version );
 await Bun.write( "./package.json", JSON.stringify( pkg, null, 2 ) + "\n" );
