@@ -44,7 +44,7 @@ const registry = await fetch('https://registry.npmjs.org/vite-svelte-navigator/l
 const { version } = await registry.json() as { version: string };
 const pkg = await Bun.file('./package.json').json() as PackageJson;
 const latestVersion = bumpVersion( version );
-if ( newVersion !== pkg.version ) {
+if ( latestVersion !== pkg.version ) {
     pkg.version = latestVersion;
     await Bun.write( "./package.json", JSON.stringify( pkg, null, 2 ) + "\n" );
 }
