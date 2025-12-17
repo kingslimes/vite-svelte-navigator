@@ -1,6 +1,6 @@
 {
   "name": "vite-svelte-navigator",
-  "version": "1.2.2",
+  "version": "1.0.0",
   "description": "Navigator SPA for Svelte",
   "author": {
     "name": "kingslimes",
@@ -22,11 +22,17 @@
   "license": "MIT",
   "keywords": [
     "spa",
+    "vite",
+    "hooks",
     "svelte",
     "router",
     "routing",
+    "navigator",
+    "navigation",
     "typescript",
-    "navigation"
+    "accessibility",
+    "svelte-navigator",
+    "vite-svelte-navigator"
   ],
   "repository": {
     "type": "git",
