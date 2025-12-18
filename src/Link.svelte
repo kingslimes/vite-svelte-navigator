@@ -1,18 +1,19 @@
 <script lang='ts'>
+	import { getContext as g } from 'svelte'
+	import { NSP_ROUTER as b } from './namespace'
+	import type { Router as w, AnyObject as m } from './navigator'
 	export let href: string
 	export let className: string = ''
 	export let replace: boolean = false
 	export let external: boolean = false
 	export let disabled: boolean = false
+	export let state: m | undefined = undefined
 	export let download: boolean | string = false
 	export let rel: string | undefined = undefined
 	export let title: string | undefined = undefined
 	export let style: string | undefined = undefined
 	export let target: string | undefined = undefined
 	export let ariaLabel: string | undefined = undefined
-	import { getContext as g } from 'svelte'
-	import { NSP_ROUTER as b } from './namespace'
-	import type { Router as w } from './navigator'
 	const r = g<w>( b )
     $: e = external || /^https?:\/\//i.test(href) || href.startsWith('//')
     $: h = href.startsWith('#')
@@ -40,7 +41,7 @@
 		if ( n ) {
             if ( r ) {
                 j.preventDefault()
-                r.navigate( href, { replace } )
+                r.navigate( href, { replace, state } )
             } else {
 				console.warn('[vite-svelte-navigator] <Link> must be used inside <RouterProvider>')
 				return

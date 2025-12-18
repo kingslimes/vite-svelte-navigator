@@ -5,7 +5,7 @@ import { getContext } from "svelte";
 import { derived, writable } from "svelte/store";
 import { NSP_PARAM, NSP_ROUTER } from "./namespace";
 
-type AnyObject = { [ P in number | string | symbol ]: any };
+export type AnyObject = { [ P in number | string | symbol ]: any };
 
 export type BrowserRouter = {
     path: string;
@@ -68,6 +68,7 @@ interface LinkOptions {
   replace?: boolean;
   disabled?: boolean;
   external?: boolean;
+  state?: AnyObject;
 }
 
 export function link( node: HTMLAnchorElement, options: LinkOptions = {} ) {
@@ -109,7 +110,7 @@ export function link( node: HTMLAnchorElement, options: LinkOptions = {} ) {
             return;
         }
         event.preventDefault();
-        router.navigate( href, { replace: options.replace } );
+        router.navigate( href, { replace: options.replace, state: options.state } );
     }
     node.addEventListener( "click", onClick );
     return {
