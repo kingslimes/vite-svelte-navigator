@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "types": ["bun-types"],
+    "composite": true,
+    "target": "ES2023",
+    "module": "esnext"
+  },
+  "include": ["build.ts","bump.ts"]
+}

@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    /* Language & Emit */
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2020", "DOM"],
+
+    /* Declarations */
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationMap": false,
+
+    /* Output */
+    "outDir": "dist",
+    "rootDir": "src",
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Interop */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* DX */
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    /* Bun / Svelte */
+    "types": ["bun-types"],
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.svelte"
+  ],
+  "references": [
+    { "path": "./tsconfig.build.json" }
+  ],
+  "exclude": ["node_modules", "dist"]
+}
