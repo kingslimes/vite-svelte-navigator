@@ -24,7 +24,7 @@ await $`mv ./dist/index.d.ts ./dist/main.d.ts`;
 // BUILD INDEX
 const files = [
     { name: 'index.js', content: "export{default as Link}from'./Link.svelte'\nexport{default as RouterProvider}from'./Provider.svelte'\nexport{createBrowserRouter,useNavigate,useParams,link}from'./main'" },
-    { name: 'index.d.ts', content: "export{default as Link}from'./Link.svelte'\nexport{default as RouterProvider}from'./Provider.svelte'\nexport type{createBrowserRouter,BrowserRouter,useNavigate,useParams,link}from'./main'" }
+    { name: 'index.d.ts', content: "export{type BrowserRouter}from'./main'\nexport{default as Link}from'./Link.svelte'\nexport{default as RouterProvider}from'./Provider.svelte'\nexport{createBrowserRouter,useNavigate,useParams,link}from'./main'" }
 ]
 for ( const file of files ) {
     await Bun.write(
