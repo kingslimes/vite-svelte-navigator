@@ -85,13 +85,13 @@ Use the `Link` component for declarative, client-side navigation. When clicked, 
 
 #### `useNavigate` Hook
 
-`useNavigate` retrieves the `Maps` function and `location` stores from the router context (`NSP_ROUTER`).
+`useNavigate` retrieves the `Maps` function and `website` stores from the router context (`NSP_ROUTER`).
 
 ```svelte
 <script>
     import { useNavigate } from 'vite-svelte-navigator';
     
-    const { navigate, location } = useNavigate();
+    const { navigate, website } = useNavigate();
 
     // Programmatic navigation
     function goToHome() {
@@ -99,7 +99,7 @@ Use the `Link` component for declarative, client-side navigation. When clicked, 
     }
 
     // Access to current path/state
-    location.pathname.subscribe(p => console.log('Current Path:', p)); 
+    website.pathname.subscribe(p => console.log('Current Path:', p)); 
 </script>
 
 <button on:click={goToHome}>Go to Home Programmatically</button>
