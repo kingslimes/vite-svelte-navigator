@@ -3,9 +3,9 @@
 </script>
 <section style="top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:absolute;min-height:10rem;background:white">
     <figure style="gap:1em;display:flex;align-items:center">
-        <figcaption style="font-size:2.4rem;font-weight:700;">404</figcaption>
+        <figcaption style="font-size:1.6rem;font-weight:700;">404</figcaption>
         <span style="width:1.2px;height:3.2rem;display:block;background:black"></span>
-        <article style="font-size:13pt">This page could not be found.</article>
+        <article style="font-size:12pt">This page could not be found.</article>
     </figure>
     <L href="/" style="display:flex;gap:5px;position:fixed;top:1rem;left:1rem;text-decoration:none;color:black">
         <svg style="width:20px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
