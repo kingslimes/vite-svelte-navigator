@@ -12,14 +12,14 @@ await build({
     splitting: false,
     target: "browser",
     sourcemap: "none",
-    naming: "main.js",
+    naming: "[name].js",
     external: ['svelte','*.svelte'],
-    entrypoints: ["./src/index.ts"],
+    entrypoints: ["./src/main.ts"],
     plugins: [
         dts({ compilationOptions: { preferredConfigPath: './tsconfig.dts.json' }, output: { noBanner: true } })
     ]
 });
-await $`mv ./dist/index.d.ts ./dist/main.d.ts`;
+// await $`mv ./dist/index.d.ts ./dist/main.d.ts`;
 
 // BUILD INDEX
 const files = [
@@ -38,4 +38,3 @@ await $`rsync -av --include='*/' --include='*.svelte' --exclude='*' src/ dist/`;
 await $`sed -i 's|'./navigator'|'./main'|g' dist/*.svelte`;
 await $`sed -i 's|'./namespace'|'./main'|g' dist/*.svelte`;
 await $`sed -i 's|'./utils'|'./main'|g' dist/*.svelte`;
-
