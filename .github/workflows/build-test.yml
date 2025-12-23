@@ -23,4 +23,11 @@ jobs:
       - name: Check file output
         run: tree ./dist
       - name: View all file
-        run: cd ./dist && find . -type f -exec cat {} +
+        run: |
+          cd dist
+          find . -type f | sort | while read -r file; do
+            echo "----------[$file]----------"
+            cat "$file"
+            echo ""  # blank line for separation
+            echo ""  # extra blank line
+          done
