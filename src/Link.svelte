@@ -51,11 +51,12 @@
 </script>
 <a
 	{ href }
-	class="{ className }{ disabled ? ' link-disabled' : '' }"
+	class={ className }
 	{ style }
     download={ v }
 	target={ t }
 	rel={ f }
+	{ disabled }
 	aria-label={ ariaLabel }
 	aria-disabled={ disabled || undefined }
     role={ disabled ? 'link' : undefined }
@@ -64,6 +65,4 @@
 	on:click={ c }>
 	<slot />
 </a>
-<style>
-    .link-disabled { opacity: 0.6; pointer-events: none }
-</style>
+
