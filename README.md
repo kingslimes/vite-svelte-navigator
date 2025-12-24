@@ -71,16 +71,39 @@ Use the `Link` component for declarative, client-side navigation. When clicked, 
 
 ```svelte
 <script>
-    import { Link } from 'vite-svelte-navigator';
+    import { Link, link } from 'vite-svelte-navigator';
 </script>
 
 <nav>
+
+    <a href="/test" use:link>Test</a>
+    <a href="/test/replace" use:link={{
+        replace: true
+    }}>Test Replace</a>
+
     <Link href="/">Home</Link>
     <Link href="/about">About</Link>
     <Link href="/user/123">User 123</Link>
     <Link href="/new-path" replace>Navigate (Replace)</Link>
     <Link href="https://example.com" external>External Site</Link>
 </nav>
+```
+
+### Detect `Active`
+example
+```svelte
+<a href="/test" use:link={{
+    activeClass: "activate" // default "active"
+}}>Test</a>
+<style>
+    a.activate {
+        // style here
+    }
+</style>
+```
+if use tailwindcss
+```svelte
+<Link href="/" activeClass="bg-opacity-10">Home</Link>
 ```
 
 #### `useNavigate` Hook

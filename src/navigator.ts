@@ -62,21 +62,58 @@ export function useParams< T extends Record< string, string > >() {
 
 export function useNavigate() {
     const { navigate, website } = getContext< Router >( NSP_ROUTER );
-    return { navigate, website }
+    return { navigate, ...website }
 }
 
 interface LinkOptions {
-  replace?: boolean;
-  disabled?: boolean;
-  external?: boolean;
-  state?: AnyObject;
+    state?: AnyObject;
+    replace?: boolean;
+    disabled?: boolean;
+    external?: boolean;
+    activeClass?: string;
 }
 
-export function link( node: HTMLAnchorElement, options: LinkOptions = {} ) {
+export function link( node: HTMLAnchorElement, linkOptions: LinkOptions = {} ) {
     const router = getContext<Router>( NSP_ROUTER );
     if ( !router ) {
         return;
     }
+    let options = { ...linkOptions };
+    let currentPath = window.location.pathname;
+    let unsubscribe: undefined | (() => void);
+
+    function normalize(path: string): string {
+        let p = path.trim().replace(/^\/+|\/+$/g, '');
+        return p === '' ? '/' : p;
+    }
+
+    function isCurrentlyActive(): boolean {
+        const href = node.getAttribute('href');
+        if (!href) return false;
+        if (
+            options.external ||
+            href.startsWith('http://') ||
+            href.startsWith('https://') ||
+            href.startsWith('//') ||
+            href.startsWith('#')
+        ) {
+            return false;
+        }
+        const normHref = normalize(href);
+        const normCurrent = normalize(currentPath);
+        return normCurrent === normHref || normCurrent === normHref + '/';
+    }
+
+    function updateActiveClass() {
+        const shouldBeActive = isCurrentlyActive();
+        const className = options.activeClass ?? 'active';
+        if (shouldBeActive) {
+            node.classList.add(...className.split(' '));
+        } else {
+            node.classList.remove(...className.split(' '));
+        }
+    }
+
     function onClick(event: MouseEvent) {
         if ( options.disabled ) {
             event.preventDefault();
@@ -105,12 +142,16 @@ export function link( node: HTMLAnchorElement, options: LinkOptions = {} ) {
         router.navigate( href, { replace: options.replace, state: options.state } );
     }
     node.addEventListener( "click", onClick );
+    unsubscribe = router.website.pathname.subscribe( path => currentPath = path );
+    updateActiveClass();
     return {
         update( newOptions: LinkOptions ) {
-            options = newOptions;
+            options = { ...newOptions};
+            updateActiveClass();
         },
         destroy() {
             node.removeEventListener( "click", onClick );
+            if ( unsubscribe ) unsubscribe();
         }
     };
 }
