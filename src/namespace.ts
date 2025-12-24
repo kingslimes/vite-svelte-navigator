@@ -1,2 +1,2 @@
-export const NSP_ROUTER = "@@svelte-navigator-router";
-export const NSP_PARAM = "@@svelte-navigator-param";
+export const NSP_ROUTER = "@@[vite-svelte-navigator]->ROUTER";
+export const NSP_PARAM = "@@[vite-svelte-navigator]->PARAM";
