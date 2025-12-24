@@ -114,7 +114,7 @@ if use tailwindcss
 <script>
     import { useNavigate } from 'vite-svelte-navigator';
     
-    const { navigate, website } = useNavigate();
+    const { navigate, pathname, search, state, hash } = useNavigate();
 
     // Programmatic navigation
     function goToHome() {
@@ -122,7 +122,7 @@ if use tailwindcss
     }
 
     // Access to current path/state
-    website.pathname.subscribe(p => console.log('Current Path:', p)); 
+    pathname.subscribe(p => console.log('Current Path:', p)); 
 </script>
 
 <button on:click={goToHome}>Go to Home Programmatically</button>
