@@ -71,16 +71,10 @@ Use the `Link` component for declarative, client-side navigation. When clicked, 
 
 ```svelte
 <script>
-    import { Link, link } from 'vite-svelte-navigator';
+    import { Link } from 'vite-svelte-navigator';
 </script>
 
 <nav>
-
-    <a href="/test" use:link>Test</a>
-    <a href="/test/replace" use:link={{
-        replace: true
-    }}>Test Replace</a>
-
     <Link href="/">Home</Link>
     <Link href="/about">About</Link>
     <Link href="/user/123">User 123</Link>
